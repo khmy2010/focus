@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+* {
+    font-family: 'Raleway', sans-serif;
+}
+
+.text-white {
+    color: #ffffff !important;
+}
+
+.pointer {
+    cursor: pointer !important;
+}
+
+.bg-gray {
+    background-color: #6d6e70;
+}
