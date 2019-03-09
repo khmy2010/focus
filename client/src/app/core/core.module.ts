@@ -2,7 +2,6 @@ import { Optional, SkipSelf, NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 import { LayoutComponent } from './components/layout/layout.component';
 import { HeaderComponent } from './components/header/header.component';
-import { Type } from '@angular/compiler';
 
 const components: Array<any> = [
     LayoutComponent,
