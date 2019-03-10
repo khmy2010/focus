@@ -2,6 +2,7 @@ import { Optional, SkipSelf, NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 import { LayoutComponent } from './components/layout/layout.component';
 import { HeaderComponent } from './components/header/header.component';
+import { FireService } from './services/fire.service';
 
 const components: Array<any> = [
     LayoutComponent,
@@ -17,6 +18,9 @@ const components: Array<any> = [
     ],
     imports: [
         SharedModule
+    ],
+    providers: [
+        FireService
     ]
 })
 export class CoreModule {

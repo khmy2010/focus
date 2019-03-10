@@ -15,3 +15,16 @@
 .bg-gray {
     background-color: #6d6e70;
 }
+
+.btn {
+    display: inline-block;
+    text-align: center;
+    font-weight: 500;
+    user-select: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.btn:disabled {
+    pointer-events: none;
+}
