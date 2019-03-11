@@ -19,7 +19,7 @@ export class StorageService {
 
     get(key: string, dest?: string) {
         try {
-            return JSON.stringify(this.getStorage(dest).getItem(key));
+            return JSON.parse(this.getStorage(dest).getItem(key));
         }
         catch(_) {
             return this.getStorage(dest).getItem(key);

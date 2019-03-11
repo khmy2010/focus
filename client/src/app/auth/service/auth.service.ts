@@ -4,10 +4,11 @@ import { StorageService } from 'src/app/core/services/storage.service';
 import { User } from '../models/user.model';
 import { Router } from '@angular/router';
 import { RouteConstant } from 'src/app/core/constants/route.constants';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
-    constructor(private storageService: StorageService, private router: Router) {
+    constructor(private storageService: StorageService, private router: Router, private http: HttpClient) {
 
     }
     
@@ -32,7 +33,16 @@ export class AuthService {
             }
 
             this.storageService.set('user', userData);
-            this.router.navigateByUrl(RouteConstant.TIME);
+
+            this.http.post('https://jsonplaceholder.typicode.com/posts', {
+                body: JSON.stringify({
+                    title: 'foo',
+                    body: 'bar',
+                    userId: 1
+                }),
+            }).subscribe(_ => {
+                this.router.navigateByUrl(RouteConstant.TIME);
+            });
         }
         catch(err) {
             console.error('Error while try to sign in: ', err);
@@ -40,6 +50,16 @@ export class AuthService {
     }
 
     async logout() {
+
+    }
+
+    get idToken(): string {
+        const userData: User = this.userData;
         
+        return userData ? userData.idToken : null;
+    }
+
+    get userData(): User {
+        return this.storageService.get('user');
     }
 }

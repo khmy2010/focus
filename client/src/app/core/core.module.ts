@@ -3,6 +3,10 @@ import { SharedModule } from '../shared/shared.module';
 import { LayoutComponent } from './components/layout/layout.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FireService } from './services/fire.service';
+import { AuthModule } from '../auth/auth.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 const components: Array<any> = [
     LayoutComponent,
@@ -17,10 +21,16 @@ const components: Array<any> = [
         ...components
     ],
     imports: [
+        BrowserModule,
         SharedModule
     ],
     providers: [
-        FireService
+        FireService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true
+        }
     ]
 })
 export class CoreModule {
