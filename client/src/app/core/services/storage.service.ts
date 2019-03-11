@@ -7,7 +7,7 @@ export class StorageService {
     public static LOCAL_STORAGE = "LOCAL_STORAGE";
     public static SESSION_STORAGE = "SESSION_STORAGE";
 
-    set(key: any, data: string, stringify?: boolean, dest?: string) {
+    set(key: any, data: any, stringify?: boolean, dest?: string) {
         let isStringify: boolean = stringify || false;
 
         if (typeof data === 'object' && !isStringify) {
