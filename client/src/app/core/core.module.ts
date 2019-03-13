@@ -7,6 +7,7 @@ import { AuthModule } from '../auth/auth.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { AuthGuard } from './guard/auth.guard';
 
 const components: Array<any> = [
     LayoutComponent,
@@ -30,7 +31,8 @@ const components: Array<any> = [
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,
             multi: true
-        }
+        },
+        AuthGuard
     ]
 })
 export class CoreModule {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FireService } from '../../services/fire.service';
+import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'app-layout', 

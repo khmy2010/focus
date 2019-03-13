@@ -3,8 +3,8 @@ import { auth } from "firebase";
 import { StorageService } from 'src/app/core/services/storage.service';
 import { User } from '../models/user.model';
 import { Router } from '@angular/router';
-import { RouteConstant } from 'src/app/core/constants/route.constants';
 import { HttpClient } from '@angular/common/http';
+import { RouteConstant } from 'src/app/core/constants/route.constants';
 
 @Injectable()
 export class AuthService {
@@ -32,17 +32,11 @@ export class AuthService {
                 console.log('New User!!!');
             }
 
-            this.storageService.set('user', userData);
+            const token = await auth().currentUser.getIdToken(true);
+            userData.idToken = token;
 
-            this.http.post('https://jsonplaceholder.typicode.com/posts', {
-                body: JSON.stringify({
-                    title: 'foo',
-                    body: 'bar',
-                    userId: 1
-                }),
-            }).subscribe(_ => {
-                this.router.navigateByUrl(RouteConstant.TIME);
-            });
+            this.storageService.set('user', userData);
+            this.router.navigateByUrl(RouteConstant.TIME);
         }
         catch(err) {
             console.error('Error while try to sign in: ', err);
